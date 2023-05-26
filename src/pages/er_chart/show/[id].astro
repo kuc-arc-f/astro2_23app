@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CrudShow from '../CrudShow';
+
+//
+const { id } = Astro.params;
+console.log(id);
+let item: any = await CrudShow.get(Number(id));
+//get: async function(id: number)
+//console.log(item.content);
+
+---
+
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <div class="container mb-4 pb-4">
+        <a class="btn btn-outline-primary" href={`/er_chart`}>Back</a>
+        <hr class="my-2" />		
+        <h1>{item.title}</h1>
+        <p>Id:{id}</p>
+        <hr />
+        <pre class="mermaid">{item.content}</pre>
+        <!--
+        -->
+        <hr class="my-2" />
+        <input type="hidden" value={id} id="item_id" />
+        <button id="btn_delete" class="btn btn-danger my-2">Delete</button>
+        <hr class="my-4" />
+    </div>
+</Layout>
+<!-- -->
+<script src="../CrudShow.ts"></script>
+<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+	mermaid.initialize({ startOnLoad: true });
+</script>
+<!--
+ -->
