@@ -6,12 +6,17 @@
 
  date    : 2023/05/24
 
- update  :
+ update  : 2023/05/27
 
 ***
 ### Summary
 
 Astro 2 +  Cloudflare D1, app sample
+
+***
+### API Server
+
+* https://github.com/kuc-arc-f/d1-project8git
 
 ***
 ### setup
