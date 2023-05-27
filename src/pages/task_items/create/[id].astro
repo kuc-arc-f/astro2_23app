@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CrudShow from '../../task_project/CrudShow';
+import App from './App.svelte';
+//
+const { id } = Astro.params;
+console.log("id=", id);
+//let item: any = await CrudShow.get(Number(id));
+//console.log(item);
+
+---
+
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <main class="container">
+        <App client:only="svelte" id={id} />
+        <hr />
+        <a class="btn btn-outline-primary" href={`/task_project/show/${id}`}>Back</a>
+        <hr />		
+        <p>ProjctId: {id}</p>
+        <hr />
+        <input type="hidden" value={id} id="item_id" />
+    </main>
+</Layout>
+
+<!--
+<script src="../CrudShow.ts"></script>
+ -->

@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CrudShow from '../CrudShow';
+import HttpCommon from '../../../lib/HttpCommon';
+import App from './App.svelte';
+//
+const { id } = Astro.params;
+console.log(id);
+let item: any = {}
+let postItem: any = {
+    "id": id
+};
+//let item: any = await CrudShow.get(Number(id));
+const json = await HttpCommon.post(postItem, "/project/get");
+console.log(json); 
+item = json.data;
+//console.log(item);
+
+---
+
+<!-- -->
+<style>
+.card_col_body{ text-align: left; width: 100%;}
+.card_col_icon{ font-size: 1.4rem; }
+.task_index_row .task_card_bg_blue{ background : #E3F2FD; }      
+.task_index_row .task_card_bg_gray{ background : #FFF3E0; }
+.task_index_row .card-body{ padding: 0.2rem; } 
+.task_index_row .task_title{ margin-bottom: 0.1rem; }  
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <main class="container">
+        <a class="btn btn-outline-primary" href={`/task_project`}>Back</a>
+        <hr />		
+        <h1>{item.name}</h1>
+        <p>Id:{id}</p>
+        <a class="btn btn-primary" href={`/task_items/create/${id}`}>CreateTask</a>
+        <hr />
+        <input type="hidden" value={id} id="item_id" />
+        <App client:only="svelte" id={id} />
+    </main>
+</Layout>
+<!-- -->
+

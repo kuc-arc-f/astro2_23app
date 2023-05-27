@@ -1,0 +1,22 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import type { Post } from '../index.astro';
+import App from './App.svelte';
+//
+const { id } = Astro.params;
+console.log(id);
+---
+
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <main class="container">
+        <App client:only="svelte" id={id} />
+    </main>
+
+</Layout>
+<!-- -->
+

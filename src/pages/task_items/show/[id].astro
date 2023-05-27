@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LibCrud from '../../../lib/LibCrud';
+import CrudShow from '../CrudShow';
+import ProjectShow from '../../task_project/CrudShow';
+import HttpCommon from '../../lib/HttpCommon';
+import LibCommon from "../../../lib/LibCommon";
+//
+const { id } = Astro.params;
+console.log(id);
+let postItem: any = {
+    "id": id
+};
+let item: any = await CrudShow.get(Number(id));
+let projectItem: any = await CrudShow.porjectGet(Number(item.projectId));
+//console.log(projectItem);
+item.complete = LibCommon.converDateString(item.complete);
+//console.log(item);       
+
+---
+
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <main class="container">
+        <a class="btn btn-outline-primary" href={`/task_project/show/${projectItem.id}`}>Back</a>
+        <hr />		
+        <h1>{item.title}</h1>
+        <p>Id:{id}</p>
+        <hr />
+        <p>Scheduled Complete: {item.complete}</p>
+        <hr />
+        <pre>{item.content}</pre>
+        <input type="hidden" value={id} id="item_id" />
+        <button id="btn_delete" class="btn btn-danger">Delete</button>
+    </main>
+</Layout>
+<!-- -->
+<script src="../CrudShow.ts"></script>
+
+<!--
+ -->
