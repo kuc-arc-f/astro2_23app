@@ -1,6 +1,7 @@
 import LibConfig from '../../lib/LibConfig';
 import Crud from './Crud';
 import HttpCommon from '../../lib/HttpCommon';
+import LibAuth from '../../lib/LibAuth';
 //
 const CrudCreate = {
 
@@ -17,7 +18,7 @@ const CrudCreate = {
       let values = Crud.getInputValues();
       values.status = String(selected);
       values.projectId = projectId;
-      values.userId = 0;
+      values.userId = LibAuth.getUserId();
 //console.log(values);
       const json = await HttpCommon.server_post(values, '/tasks/create');
 console.log(json);

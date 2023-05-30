@@ -4,7 +4,7 @@ let items = [], itemsTodos = [];
 //
 const startProc= async function() {
 	items = await CrudIndex.getList();
-	console.log(items);
+console.log(items);
 }
 startProc();
 //

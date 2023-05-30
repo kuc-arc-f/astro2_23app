@@ -1,6 +1,7 @@
 import LibConfig from '../../lib/LibConfig';
 import Crud from './Crud';
 import HttpCommon from '../../lib/HttpCommon';
+import LibAuth from '../../lib/LibAuth';
 //
 const CrudCreate = {
 
@@ -15,7 +16,7 @@ const CrudCreate = {
     try{
       let ret = false;
       let values = Crud.getInputValues();
-      values.userId = 0;
+      values.userId = LibAuth.getUserId();
 console.log(values);
 //return;
       const json = await HttpCommon.server_post(values, '/er_chart/create');

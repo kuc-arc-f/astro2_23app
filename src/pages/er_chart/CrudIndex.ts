@@ -1,6 +1,7 @@
 import LibCrud from '../../lib/LibCrud';
 import LibConfig from '../../lib/LibConfig';
 import HttpCommon from '../../lib/HttpCommon';
+import LibAuth from '../../lib/LibAuth';
 //
 const CrudIndex = {
   /**
@@ -12,7 +13,11 @@ const CrudIndex = {
   getList :async function (): Promise<any>
   {
     try{
-      const json = await HttpCommon.server_post({}, "/er_chart/get_list");
+      const postItem = {
+        userId: LibAuth.getUserId(),
+      }
+//console.log(postItem);
+      const json = await HttpCommon.server_post(postItem, "/er_chart/get_list");
 console.log(json);      
       let items: any[] = [];
       items = json.data;
