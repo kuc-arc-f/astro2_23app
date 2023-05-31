@@ -18,7 +18,6 @@ const search = async function() {
 
 <div class="">
     <h1>Project</h1>
-    <p>markdown display possible.</p>
     <hr class="my-1" />	
     <a href={`/task_project/create`} class="btn btn-primary">Create</a>
     <hr class="my-1" />	
@@ -28,8 +27,6 @@ const search = async function() {
         <p>ID : {item.id}
             <a href={`/task_project/show/${item.id}`} class="mx-2 btn btn-sm btn-outline-primary">Show
             </a>
-            <a href={`/task_project/edit/${item.id}`} class="btn">[ Edit ]
-            </a>			
         </p>
         <hr />
     </div>
@@ -40,4 +37,7 @@ const search = async function() {
 </style>
 
 <!--
+<p>markdown display possible.</p>
+<a href={`/task_project/edit/${item.id}`} class="btn">[ Edit ]
+</a>			
 -->

@@ -2,14 +2,19 @@
 //import CrudShow from "../../task_project/CrudShow";
 import ProjectShow from "../../task_project/CrudShow";
 import CrudCreate from "../CrudCreate";
+import LibCommon from '../../../lib/LibCommon';
+//
 export let id;
 let project: any = {};
-let selected = 1;
+let selected = 1, complete = "";
 
 console.log("id=", id);
+//
 const startProc= async function() {
 	project = await ProjectShow.get(id);
-	console.log(project);
+//	console.log(project);
+    const dt = LibCommon.formatDate(new Date(), 'YYYY-MM-DD');
+    complete = dt;
 }
 startProc();
 //
@@ -60,13 +65,13 @@ console.log("selected=", selected)
     <hr className="mt-2 mb-2" />
     <div class="col-md-6 form-group">
         <label class="col-sm-12">Scheduled Complete:</label>
-        <input type="date"  class="form-control" value="" id="complete" name="complete"                   
+        <input type="date"  class="form-control" value={complete} id="complete" name="complete"                   
             required="required" />        
     </div>
 
     <hr className="mt-2 mb-2" />
     <div className="col-md-6 form-group">
-        <label for="content">内容</label>
+        <label for="content">Content</label>
         <textarea id="content" name="content" required class="form-control"
         rows="10" placeholder=""></textarea>
     </div>    

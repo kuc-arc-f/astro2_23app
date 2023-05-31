@@ -10,6 +10,7 @@ let task: any = {};
 let selected = 1;
 
 console.log("id=", id);
+//
 const startProc= async function() {
 	task = await CrudEdit.get(id);
     selected = Number(task.status);
@@ -30,6 +31,19 @@ console.log(resulte);
     } catch (e) {
         console.error(e);
         throw new Error('Error , delete_movie');
+    }    
+}
+//
+const deleteTask = async function() {
+    try{
+        const resulte = await CrudShow.delete(Number(id), selected);
+console.log(resulte);
+        if(resulte) {
+            alert("Success, delete");
+        }
+    } catch (e) {
+        console.error(e);
+        throw new Error('Error , delete');
     }    
 }
 //onChangeState
@@ -70,7 +84,7 @@ console.log("selected=", selected)
 
     <hr className="mt-2 mb-2" />
     <div className="col-md-6 form-group">
-        <label for="content">内容</label>
+        <label for="content">Content</label>
         <textarea id="content" name="content" required class="form-control"
         rows="10" placeholder="">{task.content}</textarea>
     </div>    
@@ -84,4 +98,5 @@ console.log("selected=", selected)
 </style>
 
 <!--
+    <button class="btn btn-danger my-2" on:click={deleteTask}>Delete</button>
 -->

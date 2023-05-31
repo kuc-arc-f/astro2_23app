@@ -5,16 +5,16 @@ export let id;
 let items: any[] = [], itemsNone = [], itemsWorking = [], itemsComplete = [];
 let selected = 1;
 
-console.log("id=", id);
+//console.log("id=", id);
 const startProc= async function() {
     items = await TaskIndex.getList(id);
-    console.log(items);
+//    console.log(items);
     itemsNone = items.filter(item => (item.status === '1') );
-    console.log(itemsNone);
+//console.log(itemsNone);
     itemsWorking = items.filter(item => (item.status === '2') );
-    console.log(itemsWorking);
+//console.log(itemsWorking);
     itemsComplete = items.filter(item => (item.status === '3') );
-    console.log(itemsComplete);
+//console.log(itemsComplete);
 }
 startProc();
 </script>
@@ -29,17 +29,17 @@ startProc();
     <div class="row">	 
         <div class="col-md-4">
         {#each itemsNone as item}
-            <IndexRow id={item.id} title={item.title} status="1" />
+            <IndexRow id={item.id} title={item.title} status="1" complete={item.complete} />
         {/each}
         </div>
         <div class="col-md-4">
         {#each itemsWorking as item}
-            <IndexRow id={item.id} title={item.title} status="2" />
+            <IndexRow id={item.id} title={item.title} status="2" complete={item.complete} />
         {/each}
         </div>
         <div class="col-md-4">
         {#each itemsComplete as item}
-            <IndexRow id={item.id} title={item.title} status="3" />
+            <IndexRow id={item.id} title={item.title} status="3" complete={item.complete} />
         {/each}
         </div>
     </div>   

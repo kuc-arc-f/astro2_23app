@@ -16,9 +16,9 @@ console.log(item);
 <!-- MarkUp -->
 <Layout title="Welcome to Astro.">
     <main class="container">
-        <a class="btn btn-outline-primary" href={`/todo`}>Back</a>
+        <a class="btn btn-outline-primary" href={`/task_project`}>Back</a>
         <hr />		
-        <h1>CrudEdit</h1>
+        <h1>ProjectEdit</h1>
         <p>Id:{id}</p>
         <hr />
         <div class="row">
@@ -36,7 +36,7 @@ console.log(item);
                 rows="10">{item.content}</textarea>
             </div>
             <div>
-            <label for="completed">完了フラグ</label>
+                <label for="completed">完了フラグ</label>
                 <input type="checkbox" id="completed" name="completed" value="1">
             </div>
             <hr />			

@@ -88,7 +88,6 @@ const Crud = {
 console.log(res);
         if(res) {
           alert("Success, delete");
-//          window.location.href = '/todo';	
         }
       }); 
     } catch (e) {

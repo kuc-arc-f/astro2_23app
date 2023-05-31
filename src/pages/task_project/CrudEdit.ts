@@ -19,7 +19,8 @@ const CrudEdit = {
       let values = Crud.getInputValues();  
       values.id = Number(id);
   console.log(values);
-      const json = await HttpCommon.server_post(values, '/todos/update');
+  return;
+      const json = await HttpCommon.server_post(values, '/project/update');
       console.log(json);
       if (json.ret ===  LibConfig.OK_CODE) {
         ret = true;
