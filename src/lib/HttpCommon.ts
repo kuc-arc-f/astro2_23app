@@ -24,10 +24,12 @@ const HttpCommon = {
       const json = await res.json()
 //console.log(json);   
       if (res.status !== 200) {
+        console.error("error, status <> 200");
         throw new Error(await res.text());
       }
       if (json.ret !==  LibConfig.OK_CODE) {
-        throw new Error("Error, json.ret <> OK");
+        console.error("Error, json.ret <> OK");
+        return {};
       } 
       return json;
     } catch (e) {

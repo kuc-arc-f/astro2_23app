@@ -1,5 +1,6 @@
 import LibConfig from '../../lib/LibConfig';
 import LibCookie from '../../lib/LibCookie';
+import Session from '../../lib/Session';
 //
 const Login = {
   /**
@@ -37,7 +38,13 @@ console.log(json);
         ret = true;
         const key = LibConfig.COOKIE_KEY_AUTH;  
         await LibCookie.set_cookie(key, json.data.id);
-        location.href = '/';
+        //SESSION_KEY_USER
+        const sessionKey = LibConfig.SESSION_KEY_USER; 
+        let resulte = await Session.put(sessionKey, JSON.stringify(json.data)); 
+console.log(resulte);
+        if(resulte ) {
+          location.href = '/';
+        }
       } else {
         alert("Error, login");
       }

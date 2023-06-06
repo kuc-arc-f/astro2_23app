@@ -1,0 +1,27 @@
+---
+// sessionDb, auth login check
+
+import Layout from '../../layouts/Layout.astro';
+import Auth from '../../lib/server/Auth';
+//
+const valid = await Auth.sessionValidate(Astro);
+if(!valid) { return Astro.redirect('/login'); }
+
+---
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <div class="container">
+        <h3>testAuth3</h3>
+        <hr />
+        <button id="btn_test" class="btn btn-primary">Test
+        </button>		
+
+    </div>
+</Layout>
+
+<style>
+</style>
+
+<!-- -->
+<script src="./Test.ts"></script>

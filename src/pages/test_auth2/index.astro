@@ -1,0 +1,28 @@
+---
+//server , cookie auth
+
+import Layout from '../../layouts/Layout.astro';
+import HttpCommon from '../../lib/HttpCommon';
+import LibConfig from '../../lib/LibConfig';
+import Auth from '../../lib/server/Auth';
+//
+await Auth.validate(Astro);
+
+---
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <div class="container">
+        <h3>testAuth</h3>
+        <hr />
+        <button id="btn_test" class="btn btn-primary">Test
+        </button>		
+
+    </div>
+</Layout>
+
+<style>
+</style>
+
+<!-- -->
+<script src="./Test.ts"></script>

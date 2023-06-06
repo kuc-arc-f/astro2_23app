@@ -1,0 +1,42 @@
+---
+// sessionDb, auth login check
+
+import Layout from '../../layouts/Layout.astro';
+import HttpCommon from '../../lib/HttpCommon';
+import LibConfig from '../../lib/LibConfig';
+import Auth from '../../lib/server/Auth';
+import Session from '../../lib/server/ServerSession';
+//
+try{
+    const sessionId = Session.getSessionId(Astro);
+//console.log("sessionId=", sessionId);
+    const obj = await  Session.get(LibConfig.SESSION_KEY_USER, sessionId);
+console.log(obj);
+    if(!obj.id) {
+        throw new Error('Error , nothing obj.id')
+    }
+    //TODO: Auth.XXX の、１行で。認証したい
+} catch (e) {
+    console.error(e);
+    return Astro.redirect('/errors/500');
+}
+
+console.log("head-end");
+---
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+    <div class="container">
+        <h3>testAuth3</h3>
+        <hr />
+        <button id="btn_test" class="btn btn-primary">Test
+        </button>		
+
+    </div>
+</Layout>
+
+<style>
+</style>
+
+<!-- -->
+<script src="./Test.ts"></script>

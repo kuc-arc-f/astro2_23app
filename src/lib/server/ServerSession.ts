@@ -1,6 +1,6 @@
-import LibCookie from './LibCookie';
-import LibConfig from './LibConfig';
-import HttpCommon from './HttpCommon';
+//import LibCookie from './LibCookie';
+import LibConfig from '../LibConfig';
+import HttpCommon from '../HttpCommon';
 //
 const Session = {
   /* put, get, delete */
@@ -20,7 +20,7 @@ console.log("sid=", sid);
         sessionId: sid,
         key: key,
       }
-      const json = await HttpCommon.server_post(item, '/session/delete');
+      const json = await HttpCommon.post(item, '/session/delete');
 //console.log(json);
       ret = true;
       return ret;
@@ -35,20 +35,22 @@ console.log("sid=", sid);
   *
   * @return
   */ 
-  get: async function(key: string): Promise<any>
+  get: async function(key: string, sessionId: string): Promise<any>
   {
     try {
-      let ret = null;
-      const sid = this.getSessionId();
+      let ret = {};
+      const sid = sessionId;
 //console.log("sid=", sid);      
       const item = {
         sessionId: sid,
         key: key,
       }
-      const json = await HttpCommon.server_post(item, '/session/get');
+      const json = await HttpCommon.post(item, '/session/get');
 //console.log(json);
       if (json.ret !== LibConfig.OK_CODE) {
-        throw new Error("Error, ret <> OK");
+        console.error("Error, json.ret <> OK");
+        return ret;
+//        throw new Error("Error, ret <> OK");
       }
       ret = JSON.parse(json.data.value);
       return ret;
@@ -73,12 +75,14 @@ console.log("sid=", sid);
         key: key,
         value: value,
       }
-//console.log("sid=", sid);      
-      const json = await HttpCommon.server_post(item, '/session/create');
+//console.log("sid=", sid);     
+/*
+      const json = await HttpCommon.post(item, '/session/create');
 console.log(json);      
       if (json.ret ===  LibConfig.OK_CODE) {
         ret = true;
       }       
+*/ 
       return ret;
     } catch (e) {
       console.error(e);
@@ -91,22 +95,22 @@ console.log(json);
   *
   * @return
   */ 
-  getSessionId: function(): string
+  getSessionId: function(Astro: any): string
   {
     try {
       let ret = "";
-      const key = LibConfig.COOKIE_KEY_SESSION;
-      const sid = LibCookie.get_cookie(key);
 //console.log("sid=", sid);
-      //add SessionId
-      //@ts-ignore
-      ret = sid;
-      if(sid === null) {
-        const rand = Number(Math.random() * 1000000);
-        //@ts-ignore
-        let newSid = Date.now() + "-" + String(parseInt(rand));
-        ret = newSid;
-        LibCookie.set_cookie(key, newSid);
+      const key = LibConfig.COOKIE_KEY_SESSION;
+      if (Astro.cookies.has(key) === false) {
+        console.error("Error, cookies.has = false");
+        return ret;
+//        return Astro.redirect('/errors/500');
+//        throw new Error("Error, cookies.has = false");
+      } else {
+        const cookie = Astro.cookies.get(key);
+        const seeeionValue = cookie.value;
+        console.log("seeeionValue=", seeeionValue);
+        ret = seeeionValue;
       }
       return ret;
     } catch (e) {
