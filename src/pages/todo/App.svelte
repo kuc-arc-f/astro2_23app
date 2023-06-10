@@ -1,35 +1,57 @@
 <script lang="ts">
+import PaginateBox from "./PaginateBox.svelte";
 import CrudIndex from "./CrudIndex";
-let items = [], itemsTodos = [];
+let items = [], itemsTodos = [], completeType = 0;
+let itemPage = 1, itemsAll = [], perPage: number = 10;
 //
+
 const startProc= async function() {
-	itemsTodos = await CrudIndex.getList();
-	items = itemsTodos.filter(item => (item.completed === 0));
-	console.log(items);
+    itemsTodos = await CrudIndex.getList();
+    items = itemsTodos.filter(item => (item.completed === completeType));
+    items = await CrudIndex.getPageList(items, itemPage, perPage);
+    console.log(items);
 }
 startProc();
 //
 const search = async function() {
-	console.log("search");
-	items = await CrudIndex.search();
-	console.log(items);
+    console.log("search");
+    items = await CrudIndex.search();
+    console.log(items);
 }
 //
 const changeComplete = async function() {
-	console.log("#changeComplete"); 
-	items = itemsTodos.filter(item => (item.completed === 1));
+    itemPage = 1;
+    completeType = 1;
+console.log("#changeComplete", completeType); 
+    items = itemsTodos.filter(item => (item.completed === completeType));
+    items = await CrudIndex.getPageList(items, itemPage, perPage);
 console.log(items);
 }
 //
 const changeActive = async function() {
-	console.log("#changeActive"); 
-	items = itemsTodos.filter(item => (item.completed === 0));
+    itemPage = 1;
+    completeType = 0;
+console.log("#changeActive=", completeType); 
+    items = itemsTodos.filter(item => (item.completed === completeType));
+    items = await CrudIndex.getPageList(items, itemPage, perPage);
 console.log(items);
 }
-
+/**
+* parentUpdateList
+* @param
+*
+* @return
+*/ 
+const parentUpdateList = async function(page: number) {
+    console.log("parentUpdateList=", page);
+    itemPage = page;
+    items = itemsTodos.filter(item => (item.completed === completeType));
+    items = await CrudIndex.getPageList(items, page, perPage);
+    console.log(items);
+}
 </script>
 
-<div class="">
+<div class="my-4">
     <h1>Todos</h1>
     <p>markdown display possible.</p>
     <hr class="my-1" />	
@@ -50,7 +72,8 @@ console.log(items);
         </p>
         <hr />
     </div>
-    {/each}		
+    {/each}
+    <PaginateBox  itemPage={itemPage} parentUpdateList={parentUpdateList} />		
 </div>
 
 <style>
