@@ -24,6 +24,13 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 * https://github.com/kuc-arc-f/d1-project8git
 
 ***
+### Screen
+
+* todo
+
+![img](https://img-static-kuc.netlify.app/img/front_2023/ss-todo-0611_18d.png)
+
+***
 ### setup
 * .env
 * PUBLIC_API_URL, PUBLIC_API_KEY
