@@ -6,13 +6,17 @@
 
  date    : 2023/05/24
 
- update  : 2023/06/11
+ update  : 2023/06/11 
 
 ***
 ### Summary
 
 Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 
+* todo : todo app, markdown input
+* plan : schedule input
+* er-chart : mermaid.js use, Er Chart create
+* task-list: project, task List add
 
 ***
 ### API Server
