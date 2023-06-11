@@ -6,7 +6,7 @@
 
  date    : 2023/05/24
 
- update  : 2023/06/11 
+ update  : 2023/06/11
 
 ***
 ### Summary
@@ -29,6 +29,11 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 * todo
 
 ![img](https://img-static-kuc.netlify.app/img/front_2023/ss-todo-0611_18d.png)
+
+* plan
+
+![img](https://img-static-kuc.netlify.app/img/front_2023/ss-plan-0611a.png)
+
 
 ***
 ### setup
