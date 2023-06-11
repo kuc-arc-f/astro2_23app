@@ -34,6 +34,10 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 
 ![img](https://img-static-kuc.netlify.app/img/front_2023/ss-plan-0611a.png)
 
+* er-chart
+
+![img](https://img-static-kuc.netlify.app/img/front_2023/ss-er-0611a.png)
+
 
 ***
 ### setup
