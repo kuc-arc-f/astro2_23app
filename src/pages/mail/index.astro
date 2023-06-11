@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HttpCommon from '../../lib/HttpCommon';
+
+const json = await HttpCommon.post({}, "/test/get_list");
+console.log(json);
+---
+
+<Layout title="Welcome to Astro.">
+    <div class="container">
+        <h3>Mail-Test</h3>
+        <hr />
+        <div className="col-md-6 form-group">
+            <label for="to_mail_address">To-Mail</label>
+            <input type="text" id="to_mail_address" name="to_mail_address"
+            class="form-control" required>
+        </div>
+
+        <div className="col-md-6 form-group">
+            <label for="title">タイトル</label>
+            <input type="text" id="title" name="title"
+            class="form-control" required>
+        </div>
+        <hr className="mt-2 mb-2" />
+        <div className="col-md-6 form-group">
+            <label for="content">内容</label>
+            <textarea id="content" name="content" required class="form-control"
+            rows="10" placeholder="Content input, please"></textarea>
+        </div>        
+        <hr />
+        <button id="btn_test" class="btn btn-primary">Test-Mail
+        </button>		
+    </div>
+</Layout>
+
+<style>
+</style>
+<!-- -->
+<script src="./Test.ts"></script>
