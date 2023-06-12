@@ -23,12 +23,12 @@ const CrudIndex = {
         "end": end_str,
         "userId": LibAuth.getUserId()
       }
-console.log(postItem);
+//console.log(postItem);
       const json = await HttpCommon.server_post(postItem, "/plan/get_list");
 //console.log(json);      
       let items: any[] = [];
       items = json.data;
-//console.log(items);
+console.log(items);
       return items;
     } catch (e) {
       console.error(e);

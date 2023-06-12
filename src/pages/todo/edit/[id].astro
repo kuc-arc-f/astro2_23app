@@ -27,7 +27,7 @@ console.log(item);
             <div className="col-md-6 form-group">
                 <label for="title">タイトル</label>
                 <input type="text" id="title" name="title" required 
-                class="form-control" value={item.title}>
+                class="form-control" value={item.title} />
             </div>
             <div>
                 <label for="content">内容</label>
@@ -37,7 +37,8 @@ console.log(item);
             </div>
             <div>
             <label for="completed">完了フラグ</label>
-                <input type="checkbox" id="completed" name="completed" value="1">
+                <input type="checkbox" class="form-check-input" 
+                id="completed" name="completed" value="1" />
             </div>
             <hr />			
         </div>

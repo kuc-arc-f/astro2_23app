@@ -1,13 +1,13 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CrudShow from '../CrudShow';
-
+import LibCommon from "../../../lib/LibCommon";
 //
 const { id } = Astro.params;
 console.log(id);
 let item: any = await CrudShow.get(Number(id));
-//get: async function(id: number)
-//console.log(item.content);
+const createdAt = LibCommon.converDateString(item.createdAt);
+console.log(item);
 
 ---
 
@@ -22,6 +22,7 @@ let item: any = await CrudShow.get(Number(id));
         <hr class="my-2" />		
         <h1>{item.title}</h1>
         <p>Id:{id}</p>
+        <p>{createdAt}</p>
         <hr />
         <pre class="mermaid">{item.content}</pre>
         <!--

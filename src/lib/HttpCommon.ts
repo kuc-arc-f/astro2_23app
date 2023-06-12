@@ -63,7 +63,8 @@ const HttpCommon = {
         throw new Error(await res.text());
       }
       if (json.ret !==  LibConfig.OK_CODE) {
-        throw new Error("Error, json.ret <> OK");
+        console.error("Error, json.ret <> OK");   
+//        throw new Error("Error, json.ret <> OK");
       } 
       return json;
     } catch (e) {

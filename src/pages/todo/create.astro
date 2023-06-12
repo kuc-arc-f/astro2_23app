@@ -6,14 +6,11 @@ export type Post = {
   id: number;
   name: string;
 };
-//
-//const items: Post[]  = await LibCrud.getList();
-//console.log(items);
 ---
 
 <Layout title="Welcome to Astro.">
     <main class="container">
-        <a href={`/todo`}>[ Back ]</a>
+        <a class="btn btn-outline-primary" href={`/todo`}>Back</a>
         <hr />		
         <h1>Create</h1>
         <p class="instructions">
@@ -32,9 +29,10 @@ export type Post = {
                 rows="10" placeholder="markdown input, please"></textarea>
             </div>
             <hr className="mt-2 mb-2" />
-            <div>
+            <div class="completed_box_wrap">
                 <label for="completed">完了フラグ</label>
-                <input type="checkbox" id="completed" name="completed" value="1">
+                <input type="checkbox" class="form-check-input"
+                 id="completed" name="completed" value="1" />
             </div>
         </div>	
         <hr />
@@ -44,6 +42,7 @@ export type Post = {
 </Layout>
 <!-- -->
 <style>
+.completed_box_wrap{ display: none; }
 </style>
 <!-- -->
 <script src="./CrudCreate.ts"></script>

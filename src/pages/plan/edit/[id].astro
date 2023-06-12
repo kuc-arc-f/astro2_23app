@@ -1,12 +1,13 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import CrudShow from '../CrudShow';
-//import type { Post } from '../index.astro';
+import LibCommon from "../../../lib/LibCommon";
 
 //
 const { id } = Astro.params;
 console.log(id);
 let item: any = await CrudShow.get(Number(id));
+const p_date = LibCommon.converDateString(item.p_date);
 console.log(item);
 ---
 <!-- -->
@@ -18,7 +19,7 @@ console.log(item);
     <main class="container">
         <a class="btn btn-outline-primary" href={`/plan`}>Back</a>
         <hr />		
-        <h1>Edit: {item.p_date}</h1>
+        <h1>Edit: {p_date}</h1>
         <p>Id:{id}</p>
         <hr />
         <div class="row">

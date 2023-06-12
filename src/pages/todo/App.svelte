@@ -1,6 +1,7 @@
 <script lang="ts">
 import PaginateBox from "./PaginateBox.svelte";
 import CrudIndex from "./CrudIndex";
+import LibCommon from "../../lib/LibCommon";
 let items = [], itemsTodos = [], completeType = 0;
 let itemPage = 1, itemsAll = [], perPage: number = 10;
 //
@@ -9,7 +10,7 @@ const startProc= async function() {
     itemsTodos = await CrudIndex.getList();
     items = itemsTodos.filter(item => (item.completed === completeType));
     items = await CrudIndex.getPageList(items, itemPage, perPage);
-    console.log(items);
+console.log(items);
 }
 startProc();
 //
@@ -63,14 +64,15 @@ const parentUpdateList = async function(page: number) {
     <hr class="my-1" />	
     {#each items as item}
     <div>
-        <h3>{item.title}</h3>
-        <p>ID : {item.id}
-            <a href={`/todo/show/${item.id}`} class="mx-2 btn btn-sm btn-outline-primary">Show
-            </a>
-            <a href={`/todo/edit/${item.id}`} class="btn">[ Edit ]
+        <a href={`/todo/show/${item.id}`} ><h3>{item.title}</h3>
+        </a>    
+        <span>
+            {LibCommon.converDateString(item.createdAt)},
+            ID : {item.id}
+            <a href={`/todo/edit/${item.id}`} class="btn btn-sm btn-outline-primary mx-2">Edit
             </a>			
-        </p>
-        <hr />
+        </span>
+        <hr class="my-2" />
     </div>
     {/each}
     <PaginateBox  itemPage={itemPage} parentUpdateList={parentUpdateList} />		
@@ -80,4 +82,7 @@ const parentUpdateList = async function(page: number) {
 </style>
 
 <!--
+<h3>{item.title}</h3>
+<a href={`/todo/show/${item.id}`} class="mx-2 btn btn-sm btn-outline-primary">Show
+</a>
 -->
