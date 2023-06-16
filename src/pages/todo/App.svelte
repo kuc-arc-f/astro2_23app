@@ -16,8 +16,18 @@ startProc();
 //
 const search = async function() {
     console.log("search");
-    items = await CrudIndex.search();
+    itemPage = 1;
+    itemsTodos = await CrudIndex.search();
+    items = itemsTodos.filter(item => (item.completed === completeType));
+    items = await CrudIndex.getPageList(items, itemPage, perPage);
     console.log(items);
+}
+//
+const clearSearch = async function() {
+//    console.log("search");
+  const seachKey = (<HTMLInputElement>document.querySelector("#searchKey"));
+  seachKey.value = "";
+  startProc();
 }
 //
 const changeComplete = async function() {
@@ -37,6 +47,8 @@ console.log("#changeActive=", completeType);
     items = await CrudIndex.getPageList(items, itemPage, perPage);
 console.log(items);
 }
+
+
 /**
 * parentUpdateList
 * @param
@@ -52,15 +64,32 @@ const parentUpdateList = async function(page: number) {
 }
 </script>
 
-<div class="my-4">
-    <h1>Todos</h1>
-    <p>markdown display possible.</p>
-    <hr class="my-1" />	
-    <a href={`/todo/create`} class="btn btn-primary">Create</a>
-    <hr class="my-1" />	
-    <button id="status_none" class="btn btn-outline-primary" on:click={changeActive}
-    >Active</button>	
-    <button class="btn btn-outline-primary" on:click={changeComplete}>Complete</button>
+<div class="mb-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Todos</h1>
+        <p>markdown display possible.</p>
+      </div>
+      <div class="col-md-6 text-end">
+        <a href={`/todo/create`} class="btn btn-primary">Create</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button id="status_none" class="btn btn-outline-primary" on:click={changeActive}
+        >Active</button>	
+        <button class="btn btn-outline-primary" on:click={changeComplete}>Complete</button>
+      </div>
+      <div class="col-md-6 text-end">
+        <button class="btn btn-sm btn-outline-primary" on:click={clearSearch}
+        >Clear</button>
+        <span class="search_key_wrap">
+          <input type="text" size="24" class="mx-2" name="searchKey" id="searchKey"
+           placeholder="Title search">
+        </span>
+        <button class="btn btn-sm btn-outline-primary" on:click={search}>Search</button>      
+      </div>
+    </div>    
     <hr class="my-1" />	
     {#each items as item}
     <div>
@@ -83,6 +112,4 @@ const parentUpdateList = async function(page: number) {
 
 <!--
 <h3>{item.title}</h3>
-<a href={`/todo/show/${item.id}`} class="mx-2 btn btn-sm btn-outline-primary">Show
-</a>
 -->

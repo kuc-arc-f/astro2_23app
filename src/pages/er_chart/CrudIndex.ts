@@ -48,7 +48,34 @@ const CrudIndex = {
       console.error(e);
       throw new Error("Error, getList");
     } 
-  }  ,  
+  },
+  /**
+  *
+  * @param
+  *
+  * @return
+  */  
+  search :async function (): Promise<any>
+  {
+    try{
+//      const key = LibConfig.COOKIE_KEY_AUTH;
+      const seachKey = (<HTMLInputElement>document.querySelector("#searchKey")).value;
+      const postItem = {
+        userId: LibAuth.getUserId(),
+        seachKey: seachKey,
+      }
+console.log(postItem); 
+      const json = await HttpCommon.server_post(postItem, "/er_chart/search");
+console.log(json);      
+      let items: any[] = [];
+      items = json.data;
+console.log(items);
+      return items;
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error, search");
+    } 
+  },    
   /**
   * startProc
   * @param

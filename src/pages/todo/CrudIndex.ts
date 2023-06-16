@@ -56,6 +56,38 @@ console.log(items);
     } 
   },  
   /**
+  *
+  * @param
+  *
+  * @return
+  */  
+  search :async function (): Promise<any>
+  {
+    try{
+      const key = LibConfig.COOKIE_KEY_AUTH;
+      const auth = LibCookie.get_cookie(key);
+      if(!auth) {
+        throw new Error('Error , addItem cookie nothing.');
+      }
+      // inputタグから値を取得し、オブジェクトにセットする
+      const seachKey = (<HTMLInputElement>document.querySelector("#searchKey")).value;
+      const postItem = {
+        userId: auth,
+        seachKey: seachKey,
+      }
+console.log(postItem); 
+      const json = await HttpCommon.server_post(postItem, "/todos/search");
+console.log(json);      
+      let items: any[] = [];
+      items = json.data;
+console.log(items);
+      return items;
+    } catch (e) {
+      console.error(e);
+      throw new Error("Error, search");
+    } 
+  }, 
+  /**
   * startProc
   * @param
   *

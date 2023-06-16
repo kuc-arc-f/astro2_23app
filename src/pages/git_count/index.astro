@@ -1,6 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CrudIndex from './CrudIndex';
+import Auth from '../../lib/server/Auth';
+//
+const valid = await Auth.sessionValidate(Astro);
+if(!valid) { return Astro.redirect('/login'); }
 
 let count = 0;
 console.log("#index");
