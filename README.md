@@ -6,7 +6,7 @@
 
  date    : 2023/05/24
 
- update  : 2023/06/15 
+ update  : 2023/06/17
 
 ***
 ### Summary
@@ -22,6 +22,11 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 ### API Server
 
 * https://github.com/kuc-arc-f/d1-project8git
+
+***
+* KV (option)
+
+* https://github.com/kuc-arc-f/kv-project2
 
 ***
 ### Screen
@@ -43,6 +48,7 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 ### setup
 * .env
 * PUBLIC_API_URL, PUBLIC_API_KEY
+* PUBLIC_KV_URL, PUBLIC_KV_KEY
 * auth info: PUBLIC_BASIC_AUTH_USER, PUBLIC_BASIC_AUTH_PASSWORD
 
 ```
@@ -51,6 +57,8 @@ PUBLIC_BASIC_AUTH_PASSWORD = "1111"
 
 PUBLIC_API_URL=http://localhost:8787
 PUBLIC_API_KEY="hoge123"
+PUBLIC_KV_URL=https://hoge.com
+PUBLIC_KV_KEY=""
 
 ```
 
