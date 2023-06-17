@@ -11,7 +11,7 @@ const HttpKv = {
   {
     try {
       const url = import.meta.env.PUBLIC_KV_URL;
-      const apiKey = import.meta.env.PUBLIC_API_KEY;
+      const apiKey = import.meta.env.PUBLIC_KV_KEY;
 //console.log("#getList.apiKey=" + apiKey);
       item.api_key = apiKey;
       const body: any = JSON.stringify(item);		
@@ -21,7 +21,7 @@ const HttpKv = {
         body: body
       });
       const json = await res.json()
-//console.log(json);   
+console.log(json);   
       if (res.status !== 200) {
         console.error("error, status <> 200");
         throw new Error(await res.text());

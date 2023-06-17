@@ -1,5 +1,6 @@
 import LibConfig from '../LibConfig';
 import Session from './ServerSession';
+import ServerKV from './ServerKV';
 //
 const Auth = {
   /**
@@ -22,11 +23,11 @@ const Auth = {
     }
   },
   /**
- *
- * @param key: any
- *
- * @return
- */
+   *
+   * @param key: any
+   *
+   * @return
+   */
   sessionValidate: async function(Astro: any):Promise<any>
   {
     try {
@@ -49,5 +50,32 @@ console.log("sessionId=", sessionId);
       console.error(e);
     }
   }, 
+  /**
+   *
+   * @param key: any
+   *
+   * @return
+   */
+  kvValidate: async function(Astro: any):Promise<any>
+  {
+    try {
+      let ret = false;
+      const sessionId = Session.getSessionId(Astro);
+console.log("sessionId=", sessionId);
+      if(!sessionId) {
+        return ret;
+      }
+      const obj = await  ServerKV.get(LibConfig.SESSION_KEY_USER, sessionId);
+//console.log(obj);
+      if(!obj.id) {
+        console.error('Error , nothing obj.id');
+        return ret;
+      }
+      ret = true;
+      return ret;
+    } catch (e) {
+      console.error(e);
+    }
+  },  
 }
 export default Auth;

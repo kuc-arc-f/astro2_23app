@@ -14,7 +14,7 @@ const Crud = {
       console.log("#startProc");
       //btn
 //console.log("id=", id);
-      const key = "hoge4";
+      const key = LibConfig.SESSION_KEY_USER;
       const button: any = document.querySelector('#btn_put');
       button.addEventListener('click', async () => {
         const item = {id: 1000};

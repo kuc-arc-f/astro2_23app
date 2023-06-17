@@ -1,7 +1,7 @@
 import LibCookie from './LibCookie';
 import LibConfig from './LibConfig';
-//import HttpCommon from './HttpCommon';
 import HttpKv from './HttpKv';
+import Session from './Session';
 //
 const KV = {
   /* put, get, delete */
@@ -15,8 +15,9 @@ const KV = {
   {
     try {
       let ret = false;
+      //Session.getSessionId()
       const item = {
-        key: key,
+        key: Session.getSessionId() + ":" + key,
       }
 console.log(item);
       const json = await HttpKv.server_post(item, '/delete');
@@ -42,7 +43,7 @@ console.log(json);
       let ret = null;
 //console.log("sid=", sid);      
       const item = {
-        key: key,
+        key: Session.getSessionId() + ":" + key,
       }
 console.log(item);
       const json = await HttpKv.server_post(item, '/get');
@@ -69,7 +70,7 @@ console.log(item);
       let ret = false;
       const postValue: any = JSON.stringify(value);
       const item = {
-        key: key,
+        key: Session.getSessionId() + ":" + key,
         value: postValue
       }
 console.log(item);      
@@ -85,35 +86,5 @@ console.log(json);
       throw new Error('Error , put');
     }
   },
-  /**
-  * 
-  * @param
-  *
-  * @return
-  */ 
-  getSessionId: function(): string
-  {
-    try {
-      let ret = "";
-      const key = LibConfig.COOKIE_KEY_SESSION;
-      const sid = LibCookie.get_cookie(key);
-//console.log("sid=", sid);
-      //add SessionId
-      //@ts-ignore
-      ret = sid;
-      if(sid === null) {
-        const rand = Number(Math.random() * 1000000);
-        //@ts-ignore
-        let newSid = Date.now() + "-" + String(parseInt(rand));
-        ret = newSid;
-        LibCookie.set_cookie(key, newSid);
-      }
-      return ret;
-    } catch (e) {
-      console.error(e);
-      throw new Error('Error , getSessionId');
-    }
-  },
- 
 }
 export default KV;
