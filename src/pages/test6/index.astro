@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import App from './App.svelte';
+---
+
+<Layout title="Welcome to Astro.">
+    <div class="container">
+        <h3>test6-Modal</h3>
+        <hr />
+        <App client:only="svelte" />
+    </div>
+</Layout>
+
+<style>
+</style>
+<!-- -->
