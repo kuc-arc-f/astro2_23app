@@ -1,15 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import LibCrud from '../../lib/LibCrud';
+import Layout from '../../../layouts/Layout.astro';
+import App from './App.svelte';
+//import CrudCreate from '../CrudCreate';
 
-export type Post = {
-  id: number;
-  name: string;
-};
 ---
 
 <Layout title="Welcome to Astro.">
-    <main class="container">
+    <main class="container mb-4">
         <a class="btn btn-outline-primary" href={`/todo`}>Back</a>
         <hr />		
         <h1>Create</h1>
@@ -28,16 +25,19 @@ export type Post = {
                 <textarea id="content" name="content" required class="form-control"
                 rows="10" placeholder="markdown input, please"></textarea>
             </div>
-            <hr className="mt-2 mb-2" />
+            <hr className="mt-2 mb-1" />
             <div class="completed_box_wrap">
                 <label for="completed">完了フラグ</label>
                 <input type="checkbox" class="form-check-input"
                  id="completed" name="completed" value="1" />
             </div>
         </div>	
-        <hr />
+        <!-- 
         <button id="btn_save" class="btn btn-primary">Save
         </button>
+        <hr />
+        -->
+         <App client:only="svelte" />
     </main>
 </Layout>
 <!-- -->
@@ -45,7 +45,6 @@ export type Post = {
 .completed_box_wrap{ display: none; }
 </style>
 <!-- -->
-<script src="./CrudCreate.ts"></script>
 
 <!--
  -->
