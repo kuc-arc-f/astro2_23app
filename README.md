@@ -6,8 +6,7 @@
 
  date    : 2023/05/24
 
- update  : 2023/06/21
-
+ update  : 2023/06/24
 ***
 ### Summary
 
@@ -48,10 +47,12 @@ Astro 2 +  Cloudflare D1 app , todo, plan, er-chart, task-list
 ### setup
 * .env
 * PUBLIC_API_URL, PUBLIC_API_KEY
-* PUBLIC_KV_URL, PUBLIC_KV_KEY
+* (Option) PUBLIC_KV_URL, PUBLIC_KV_KEY
 * auth info: PUBLIC_BASIC_AUTH_USER, PUBLIC_BASIC_AUTH_PASSWORD
 
 ```
+PUBLIC_SYSTEM_NAME = "hoge_system"
+
 PUBLIC_BASIC_AUTH_USER = "hoge"
 PUBLIC_BASIC_AUTH_PASSWORD = "1111"
 

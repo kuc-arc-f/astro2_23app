@@ -2,7 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import LibCrud from '../../../lib/LibCrud';
 import type { Post } from '../index.astro';
-
+import App from './App.svelte';
 //
 const { id } = Astro.params;
 console.log(id);
@@ -42,12 +42,12 @@ console.log(item);
             </div>
             <hr />			
         </div>
-        <button id="btn_save" class="btn btn-primary">Save</button>
+        <App client:only="svelte" />
     </main>
 </Layout>
-<!-- -->
-<script src="../CrudEdit.ts"></script>
+<script src="../CrudEdit.ts"></script>	
 
 <!--
-	
+<button id="btn_save" class="btn btn-primary">Save</button>
+<hr />
  -->

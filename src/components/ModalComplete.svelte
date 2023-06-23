@@ -1,6 +1,8 @@
 <script lang="ts">
 /* モーダル表示後、次のアクションを実行する */
 import { onMount } from 'svelte';
+const sysName = import.meta.env.PUBLIC_SYSTEM_NAME;
+//
 export let message, okFunction;
 console.log("message=", message);
 
@@ -18,8 +20,7 @@ const complete = function () {
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
         <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
         <header class="modal__header">
-            <h2 class="modal__title" id="modal-1-title">
-            Title-1234
+            <h2 class="modal__title" id="modal-1-title">{sysName}
             </h2>
             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
         </header>

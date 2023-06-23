@@ -47,15 +47,6 @@ const CrudEdit = {
       if(Number(hid_completed_value) === 1) {
         completed.checked = true;
       }
-      //btn
-      const button: any = document.querySelector('#btn_save');
-      button.addEventListener('click', async() => {
-        const res = await this.update();
-console.log("res=", res);
-      if(res) {
-        window.location.href = '/todo';	
-      }
-      }); 
     } catch (e) {
       console.error(e);
     }    
