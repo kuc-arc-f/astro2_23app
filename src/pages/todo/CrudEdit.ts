@@ -5,6 +5,30 @@ import HttpCommon from '../../lib/HttpCommon';
 //
 const CrudEdit = {
   /**
+   * delete:
+   * @param key: any
+   *
+   * @return
+   */   
+  delete : async function(id: number) : Promise<any>
+  {
+    try{
+      let ret = false;
+      const item = {
+        id: id
+      }
+//console.log(item);
+      const json = await HttpCommon.server_post(item, '/todos/delete');
+//console.log(json);
+      if (json.ret ===  LibConfig.OK_CODE) {
+        ret = true;
+      }      
+      return ret;      
+    } catch (e) {
+      console.error(e);
+    }
+  },   
+  /**
    *
    * @param key: any
    *

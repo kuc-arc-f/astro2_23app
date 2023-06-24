@@ -48,6 +48,7 @@ console.log(md);
       const contentElem = (<HTMLInputElement>document.querySelector("#post_item"));
       contentElem.innerHTML = content;
 console.log("id=", id);
+/*
       const button: any = document.querySelector('#btn_delete');
       button.addEventListener('click', async () => {
         const res = await this.delete(Number(id));
@@ -56,6 +57,7 @@ console.log(res);
           window.location.href = '/todo';	
         }
       }); 
+*/
     } catch (e) {
       console.error(e);
     }    
